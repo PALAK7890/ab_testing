@@ -44,6 +44,8 @@ This project addresses:
 
 ## Dashboard Summary
 
+#LINK =https://public.tableau.com/app/profile/palak.5572/viz/ab_testing_marketing_optimization_twbx/Story1?publish=yes
+
 ### Dashboard 1: A/B Testing Analysis
 
 Focus:
