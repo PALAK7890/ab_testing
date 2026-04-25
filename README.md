@@ -2,55 +2,77 @@
 
 ## Overview
 
-This project presents a structured analytics workflow covering three critical stages of marketing decision-making:
+This project presents a structured, end-to-end marketing analytics workflow that connects experimental analysis with financial performance and strategic decision-making. It evaluates whether advertising improves user behavior, assesses whether that improvement translates into profitability, and determines how to allocate budget under constrained conditions.
 
-1. Experiment evaluation (A/B testing)
-2. Financial performance analysis (ROI and profitability)
-3. Budget optimization under constrained spend
+The analysis moves beyond descriptive metrics to answer a core business question:
 
-The objective is to move beyond surface-level metrics and answer a core business question:
-
-What is the true impact of advertising on both conversions and profitability, and how should budget be allocated to improve efficiency?
+What is the true impact of advertising on conversions and profitability, and how should limited budget be allocated to improve efficiency?
 
 ---
 
-## Problem Statement
+## Key Results
 
-Marketing teams often optimize for conversion rates without fully understanding financial outcomes. This creates a gap between performance metrics and actual business value.
-
-This project addresses:
-
-* Whether ads drive statistically significant improvement in conversions
-* Whether that improvement translates into profitability
-* How to allocate limited budget when all channels are underperforming
+* Ad campaign conversion rate: ~2.55%
+* Control group conversion rate: ~1.79%
+* Relative conversion lift: ~43%
+* Statistical significance: p < 0.001
+* Effect size: small but reliable
+* ROI across all ad formats: negative
+* Optimal budget allocation: prioritize static ads, reduce carousel exposure
 
 ---
 
-## Data and Methodology
+## Problem Context
 
-### Data
+Marketing teams often optimize campaigns based on engagement or conversion metrics without evaluating financial outcomes. This creates a disconnect between performance indicators and business value.
 
-* User-level A/B testing dataset (ad vs control group)
-* Aggregated performance metrics by ad type
+This project addresses three fundamental questions:
 
-### Approach
+* Do ads significantly improve conversion rates?
+* Are those improvements financially sustainable?
+* How should budget be allocated when all channels underperform?
 
-* Data cleaning and feature engineering in Python
-* Statistical testing using two-proportion z-test
-* ROI and profitability computation
-* Optimization logic based on relative performance
+---
+
+## Methodology
+
+### 1. Data Preparation
+
+* Cleaned and standardized user-level dataset
+* Engineered features such as exposure buckets and time segments
+* Structured data for both statistical analysis and visualization
+
+### 2. A/B Testing and Statistical Validation
+
+* Two-proportion z-test to compare conversion rates
+* Confidence interval estimation for uplift
+* Effect size (Cohen’s h) to measure practical impact
+
+### 3. Profitability Analysis
+
+* Simulated revenue and cost structure per ad type
+* Computed:
+
+  * Total cost
+  * Revenue
+  * Profit
+  * Return on investment (ROI)
+
+### 4. Budget Optimization
+
+* Developed ROI-weighted allocation model
+* Compared equal vs optimized allocation
+* Designed strategy to minimize losses under fixed budget constraint
 
 ---
 
 ## Dashboard Summary
 
-#LINK =https://public.tableau.com/app/profile/palak.5572/viz/ab_testing_marketing_optimization_twbx/Story1?publish=yes
-
 ### Dashboard 1: A/B Testing Analysis
 
 Focus:
 
-* Ad vs control group comparison
+* Ad vs control group performance
 
 Metrics:
 
@@ -58,14 +80,8 @@ Metrics:
 * Absolute and relative lift
 * Statistical significance
 
-Method:
-
-* Two-proportion z-test
-* Confidence interval estimation
-* Effect size calculation
-
-Key Finding:
-Advertising increases conversion rates with statistical significance, but the magnitude of improvement is modest.
+Insight:
+Advertising significantly improves conversion rates, but the magnitude of improvement is modest in practical terms.
 
 ---
 
@@ -73,23 +89,17 @@ Advertising increases conversion rates with statistical significance, but the ma
 
 Focus:
 
-* Financial performance across ad types
+* Financial performance by ad type
 
 Metrics:
 
-* Total cost
-* Total revenue
+* Cost
+* Revenue
 * Profit
-* Return on investment
+* ROI
 
-Comparison:
-
-* Static
-* Video
-* Carousel
-
-Key Finding:
-All ad formats generate negative ROI. Increased conversions do not offset acquisition costs, indicating weak unit economics.
+Insight:
+All ad formats generate negative ROI, indicating that increased conversions are insufficient to offset acquisition costs.
 
 ---
 
@@ -97,73 +107,70 @@ All ad formats generate negative ROI. Increased conversions do not offset acquis
 
 Focus:
 
-* Allocation of a fixed budget (₹50,000)
+* Allocation of a fixed ₹50,000 budget
 
-Method:
+Approach:
 
 * ROI-based weighting
-* Comparison of equal vs optimized allocation
+* Comparison of equal vs optimized distribution
 
-Outputs:
-
-* Recommended budget by ad type
-* Allocation percentage
-* Efficiency comparison
-
-Key Finding:
-Budget should be allocated to minimize losses rather than maximize returns. Static ads receive the highest allocation due to relatively better performance, while carousel ads are deprioritized.
+Insight:
+Budget allocation should prioritize minimizing losses. Static ads receive the highest allocation due to relatively better performance, while carousel ads are significantly reduced.
 
 ---
 
-## Key Insights
+## Business Insights
 
-* Conversion rate alone is not a sufficient performance metric
-* Profitability must be evaluated alongside growth metrics
-* Negative ROI across channels indicates structural inefficiency
-* Budget optimization should be guided by relative performance
-* Scaling campaigns without improving unit economics leads to value destruction
+* Conversion improvements do not guarantee profitability
+* Cost structure and revenue per conversion are critical drivers of ROI
+* Negative ROI across channels signals inefficiency in unit economics
+* Budget decisions should be based on relative performance, not intuition
+* Scaling campaigns without improving ROI leads to financial loss
 
 ---
 
-## Technical Implementation
+## Technical Stack
 
-* Python (Pandas, NumPy) for data preparation
-* Statistical testing for experiment validation
-* Tableau for dashboard development and visualization
+* Python (Pandas, NumPy) for data processing
+* Statistical methods for experiment validation
+* Tableau for interactive dashboards
 * Level of Detail (LOD) expressions for stable calculations
-* Aggregation and transformation for business metrics
+* CSV datasets for structured analysis
 
 ---
 
-## Business Implications
+## How to Use
 
-* Marketing effectiveness should be evaluated end-to-end, not in isolation
-* Budget decisions must incorporate cost efficiency, not just engagement
-* Optimization frameworks should prioritize loss minimization when ROI is negative
-* Strategic improvements should focus on reducing acquisition cost and increasing revenue per conversion
+1. Open the `.twbx` file in Tableau
+2. Navigate across dashboards:
+
+   * A/B Testing
+   * ROI Analysis
+   * Budget Optimization
+3. Review insights and recommended strategy
 
 ---
 
 ## Limitations
 
-* Dataset does not include long-term customer value (LTV)
-* No segmentation by audience or geography
-* Static cost assumptions across ad types
-* No temporal modeling of campaign performance
+* Revenue is simulated due to lack of real financial data
+* No customer lifetime value (LTV) included
+* No segmentation by user cohorts or geography
+* Static assumptions for cost across ad types
 
 ---
 
 ## Future Enhancements
 
-* Incorporate customer lifetime value into ROI calculations
-* Segment performance by user cohorts
-* Introduce predictive modeling for budget allocation
-* Build dynamic optimization based on real-time performance
+* Incorporate customer lifetime value into ROI analysis
+* Add segmentation by audience and behavior
+* Develop predictive models for conversion and revenue
+* Introduce dynamic budget allocation based on real-time performance
 
 ---
 
 ## Summary
 
-This project demonstrates the transition from descriptive analytics to decision-oriented analysis. It highlights the importance of connecting experimentation, financial evaluation, and strategic planning into a single coherent framework.
+This project demonstrates how to move from experimental analysis to business decision-making. It highlights the importance of evaluating both statistical significance and financial impact, and provides a practical framework for optimizing marketing spend under real-world constraints.
 
-The outcome is a practical approach to marketing optimization grounded in data and aligned with business objectives.
+The result is a cohesive analytical workflow that aligns data insights with actionable strategy.
